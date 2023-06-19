@@ -59,12 +59,37 @@ namespace ListaDeTareas
 
         private void Listadetareaslst_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            
+            try
+            {
+                tarea = tareas[Listadetareaslst.SelectedIndex];
+                if (tarea.check)
+                    tarea.check = false;
+                else tarea.check = true;
+            }
+
+            catch
+            {
+                MessageBox.Show("No hay tareas disponibles");
+            }
+
         }
 
         private void filtrocmb_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (filtrocmb.Text == "Completas")
+            {
 
+                foreach (var tarea in tareas)
+                {
+                    if (tarea.check == false) Listadetareaslst.Items.Add(tarea.descripcion);
+                }
+            }
+
+            
         }
     }
+
 }
+
+
+
